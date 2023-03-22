@@ -46,15 +46,23 @@ class TodoScreen extends StatelessWidget {
     debugPrint(snapshot.data!.snapshot.children.first.toString());
     // snapshot.data!.snapshot.children.first.value["todo_name"];
     var listItems = snapshot.data!.snapshot.children.toList();
-    return ListView.builder(
+    return ListView.separated(
       itemBuilder: (context, index) {
         var listItem = listItems[index].value;
         var data = jsonDecode(jsonEncode(listItem!));
-        return ListTile(
-          title: Text(data['todo_name']),
-          trailing: Text(data['todo_description']),
-        );
+        return Consumer<TodoProvider>(builder: (context, provider, child) {
+          return ListTile(
+            onLongPress: () => provider.deleteNote(listItems[index].key!),
+            title: Text(data['todo_name']),
+            subtitle:
+                Text('${data['todo_description']}\n${data['todo_timestamp']}'),
+            isThreeLine: true,
+          );
+        });
       },
+      separatorBuilder: (context, index) => const Divider(
+        thickness: 2,
+      ),
       itemCount: listItems.length,
     );
   }

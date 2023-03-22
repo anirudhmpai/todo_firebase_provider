@@ -21,6 +21,11 @@ class TodoProvider extends BaseProvider {
     await ref.child('/todo/${_auth.currentUser!.uid}').push().set({
       "todo_name": "name data is shown here",
       "todo_description": "description data is shows here",
+      "todo_timestamp": DateTime.now().microsecondsSinceEpoch,
     });
+  }
+
+  deleteNote(String key) {
+    ref.child('/todo/${_auth.currentUser!.uid}/$key').remove();
   }
 }
