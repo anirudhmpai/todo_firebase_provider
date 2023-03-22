@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "444854952778",
+    "firebase_url": "https://todo-firebase-provider-9687-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "todo-firebase-provider-9687",
+    "storage_bucket": "todo-firebase-provider-9687.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:444854952778:android:63c03c001adb5c6de197b3",
+        "android_client_info": {
+          "package_name": "com.anirudhmpai.providerFirebaseTodo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "444854952778-7cq6f23s41o39g0affrft437fqrmkrq1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.anirudhmpai.providerFirebaseTodo",
+            "certificate_hash": "76bf33703986417dd6ef9140d464d57ddf094396"
+          }
+        },
+        {
+          "client_id": "444854952778-s7bom01vhr0l6hvfc7o11ll8b9d2sjjc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTp3FPEP1Nhn0E_5KIal97dl557Dm4GQk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "444854952778-12muotheksjro92980g53vsvg1hrk8te.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "444854952778-h6hg8ik3q5pqunrmv5jpve3fbaeunf4n.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.anirudhmpai.providerFirebaseTodo"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

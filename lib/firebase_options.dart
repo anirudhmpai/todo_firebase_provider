@@ -54,6 +54,7 @@ class DefaultFirebaseOptions {
     appId: '1:444854952778:android:63c03c001adb5c6de197b3',
     messagingSenderId: '444854952778',
     projectId: 'todo-firebase-provider-9687',
+    databaseURL: 'https://todo-firebase-provider-9687-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'todo-firebase-provider-9687.appspot.com',
   );
 
@@ -62,7 +63,9 @@ class DefaultFirebaseOptions {
     appId: '1:444854952778:ios:00e35040e7edb7cee197b3',
     messagingSenderId: '444854952778',
     projectId: 'todo-firebase-provider-9687',
+    databaseURL: 'https://todo-firebase-provider-9687-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'todo-firebase-provider-9687.appspot.com',
+    androidClientId: '444854952778-7cq6f23s41o39g0affrft437fqrmkrq1.apps.googleusercontent.com',
     iosClientId: '444854952778-h6hg8ik3q5pqunrmv5jpve3fbaeunf4n.apps.googleusercontent.com',
     iosBundleId: 'com.anirudhmpai.providerFirebaseTodo',
   );

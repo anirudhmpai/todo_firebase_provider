@@ -1,11 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_firebase_provider/firebase_options.dart';
 import 'package:todo_firebase_provider/provider/connectivity.dart';
-import 'package:todo_firebase_provider/provider/counter.dart';
 import 'package:todo_firebase_provider/provider/login.dart';
+import 'package:todo_firebase_provider/provider/todo.dart';
 import 'package:todo_firebase_provider/routes/app_routes.dart';
 import 'package:todo_firebase_provider/screens/home.dart';
 
@@ -16,16 +17,18 @@ GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  var database = FirebaseDatabase.instance;
+  var auth = FirebaseAuth.instance;
   runApp(MultiProvider(
     providers: [
-      ChangeNotifierProvider(
-        create: (context) => CounterProvider(context, 1),
-      ),
       ChangeNotifierProvider(
         create: (context) => ConnectivityProvider(),
       ),
       ChangeNotifierProvider(
         create: (context) => LoginProvider(),
+      ),
+      ChangeNotifierProvider(
+        create: (context) => TodoProvider(database, auth),
       )
     ],
     child: const MyApp(),

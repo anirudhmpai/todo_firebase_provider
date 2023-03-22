@@ -1,16 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:provider/provider.dart';
-import 'package:todo_firebase_provider/provider/counter.dart';
-import 'package:todo_firebase_provider/routes/routes.dart';
+
+import '../routes/app_routes.dart';
+import '../routes/navigation.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    int result = Provider.of<CounterProvider>(context).counterValue;
     return Scaffold(
       appBar: AppBar(
         leading: TextButton(
@@ -30,38 +29,18 @@ class HomeScreen extends StatelessWidget {
         centerTitle: true,
         actions: [
           IconButton(
-            onPressed: () => toPushNamed(context, Paths.consumer),
+            onPressed: () => toPushNamed(context, Paths.todo),
             icon: const Icon(Icons.navigate_next),
           ),
         ],
       ),
-      body: Center(child: Text(result.toString())),
-      floatingActionButton: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          FloatingActionButton(
-              heroTag: 'provider +1',
-              onPressed: () =>
-                  Provider.of<CounterProvider>(context, listen: false)
-                      .incrementCounter(),
-              child: const Icon(Icons.plus_one)),
-          const SizedBox(height: 10),
-          FloatingActionButton(
-              heroTag: 'provider -1',
-              onPressed: () =>
-                  Provider.of<CounterProvider>(context, listen: false)
-                      .decrementCounter(),
-              child: const Icon(Icons.exposure_minus_1)),
-          const SizedBox(height: 10),
-          FloatingActionButton(
-              heroTag: 'provider 0',
-              onPressed: () {
-                Provider.of<CounterProvider>(context, listen: false)
-                    .resetCounter();
-              },
-              child: const Icon(Icons.restore)),
-        ],
-      ),
+      body: const Center(child: Text('TODO')),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     addNotePopup(context);
+      //   },
+      //   child: const Icon(Icons.add),
+      // ),
     );
   }
 }

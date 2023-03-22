@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_firebase_provider/provider/connectivity.dart';
 import 'package:todo_firebase_provider/provider/login.dart';
-import 'package:todo_firebase_provider/screens/consumer.dart';
 import 'package:todo_firebase_provider/screens/home.dart';
 import 'package:todo_firebase_provider/screens/login.dart';
 import 'package:todo_firebase_provider/screens/no_internet.dart';
+import 'package:todo_firebase_provider/screens/todo.dart';
 
 class AppRoutes {
   Route<dynamic> onGenerateRoute(RouteSettings routeSettings) {
@@ -23,8 +23,8 @@ class AppRoutes {
                 return const HomeScreen();
               case Paths.login:
                 return const LoginScreen();
-              case Paths.consumer:
-                return const ConsumerScreen();
+              case Paths.todo:
+                return const TodoScreen();
               case Paths.noInternet:
                 return const NoInternetScreen();
               default:
@@ -46,6 +46,6 @@ abstract class Paths {
   static const initial = '/';
   static const home = '/home';
   static const login = '/login';
-  static const consumer = '/consumer';
+  static const todo = '/todo';
   static const noInternet = '/no-internet';
 }
