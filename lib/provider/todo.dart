@@ -39,4 +39,18 @@ class TodoProvider extends BaseProvider {
   deleteNote(String key) {
     ref.child('/todo/${_auth.currentUser!.uid}/$key').remove();
   }
+
+  Future<void> editNote(String key) async {
+    await ref.child('/todo/${_auth.currentUser!.uid}/$key').update({
+      "todo_name":
+          nameController.text.trim().isEmpty ? 'name' : nameController.text,
+      "todo_description": descriptionController.text.trim().isEmpty
+          ? 'name'
+          : descriptionController.text,
+      "todo_timestamp": timestamp,
+    });
+    nameController.text = '';
+    descriptionController.text = '';
+    timestamp = DateTime.now().microsecondsSinceEpoch;
+  }
 }

@@ -35,7 +35,7 @@ class TodoScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          addNotePopup(context);
+          notePopup(context, false);
         },
         child: const Icon(Icons.add),
       ),
@@ -52,6 +52,12 @@ class TodoScreen extends StatelessWidget {
         var data = jsonDecode(jsonEncode(listItem!));
         return Consumer<TodoProvider>(builder: (context, provider, child) {
           return ListTile(
+            onTap: () {
+              provider.nameController.text = data['todo_name'];
+              provider.descriptionController.text = data['todo_description'];
+              provider.timestamp = data['todo_timestamp'];
+              notePopup(context, true, key: listItems[index].key!);
+            },
             onLongPress: () => provider.deleteNote(listItems[index].key!),
             title: Text(data['todo_name']),
             subtitle:
@@ -67,7 +73,7 @@ class TodoScreen extends StatelessWidget {
     );
   }
 
-  Future<dynamic> addNotePopup(BuildContext context) {
+  Future<dynamic> notePopup(BuildContext context, bool isEdit, {String? key}) {
     return showDialog(
       context: context,
       // barrierDismissible: true,
@@ -106,12 +112,16 @@ class TodoScreen extends StatelessWidget {
                   ),
                   TextButton(
                       onPressed: () => datePickerPopup(context),
-                      child: Text(DateTime.now().toString())),
+                      child: Text(isEdit
+                          ? provider.timestamp.toString()
+                          : DateTime.now().toString())),
                   const Spacer(),
                   Center(
                     child: ElevatedButton(
                         onPressed: () {
-                          provider.submitNote();
+                          isEdit
+                              ? provider.editNote(key!)
+                              : provider.submitNote();
                           Navigator.of(context).pop();
                         },
                         child: const Text('Save Note')),
