@@ -27,7 +27,7 @@ class TodoProvider extends BaseProvider {
       "todo_name":
           nameController.text.trim().isEmpty ? 'name' : nameController.text,
       "todo_description": descriptionController.text.trim().isEmpty
-          ? 'name'
+          ? 'description'
           : descriptionController.text,
       "todo_timestamp": timestamp,
     });

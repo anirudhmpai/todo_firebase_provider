@@ -82,7 +82,7 @@ class TodoScreen extends StatelessWidget {
         child: Container(
           height: 300,
           width: 500,
-          margin: const EdgeInsets.all(25),
+          margin: const EdgeInsets.all(25) + MediaQuery.of(context).viewInsets,
           padding: const EdgeInsets.all(25),
           decoration: BoxDecoration(
             color: Colors.white,
