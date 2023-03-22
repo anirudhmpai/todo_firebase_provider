@@ -3,7 +3,7 @@ import 'package:todo_firebase_provider/helpers/commons.dart';
 import 'package:todo_firebase_provider/provider/base.dart';
 
 class ConnectivityProvider extends BaseProvider {
-  late bool _isOnline;
+  bool _isOnline = false;
   bool get isOnline => _isOnline;
 
   Stream<ConnectivityResult> connectivityStream =

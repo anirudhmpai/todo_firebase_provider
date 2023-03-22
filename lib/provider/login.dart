@@ -3,23 +3,42 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:todo_firebase_provider/provider/base.dart';
 
 class LoginProvider extends BaseProvider {
-  LoginProvider();
+  bool _isAuthenticated = false;
+  bool get isAuthenticated => _isAuthenticated;
+  LoginProvider() {
+    {
+      FirebaseAuth.instance.authStateChanges().listen((event) {
+        if (event != null) {
+          _isAuthenticated = true;
+          notifyListeners();
+        } else {
+          _isAuthenticated = false;
+          notifyListeners();
+        }
+      });
+    }
+  }
 
-  Future<UserCredential> signInWithGoogle() async {
-    // Trigger the authentication flow
-    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-
-    // Obtain the auth details from the request
-    final GoogleSignInAuthentication? googleAuth =
-        await googleUser?.authentication;
-
+  Future<UserCredential?> signInWithGoogle() async {
     // Create a new credential
-    final credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth?.accessToken,
-      idToken: googleAuth?.idToken,
-    );
+    // Trigger the authentication flow
+    try {
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
-    // Once signed in, return the UserCredential
-    return await FirebaseAuth.instance.signInWithCredential(credential);
+      // Obtain the auth details from the request
+      final GoogleSignInAuthentication? googleAuth =
+          await googleUser?.authentication;
+
+      // Create a new credential
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth?.accessToken,
+        idToken: googleAuth?.idToken,
+      );
+
+      // Once signed in, return the UserCredential
+      return await FirebaseAuth.instance.signInWithCredential(credential);
+    } catch (e) {
+      return null;
+    }
   }
 }
