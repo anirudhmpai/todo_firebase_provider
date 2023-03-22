@@ -96,9 +96,11 @@ class TodoScreen extends StatelessWidget {
                     ),
                   ),
                   TextFormField(
+                    controller: provider.nameController,
                     decoration: const InputDecoration(hintText: 'Enter Name'),
                   ),
                   TextFormField(
+                    controller: provider.descriptionController,
                     decoration:
                         const InputDecoration(hintText: 'Enter Description'),
                   ),
@@ -124,11 +126,16 @@ class TodoScreen extends StatelessWidget {
   }
 
   Future<DateTime?> datePickerPopup(BuildContext context) {
+    var provider = Provider.of<TodoProvider>(context, listen: false);
     return showDatePicker(
       context: context,
       initialDate: DateTime.now(),
       firstDate: DateTime(2020),
       lastDate: DateTime(2050),
+      selectableDayPredicate: (day) {
+        provider.timestamp = day.microsecondsSinceEpoch;
+        return true;
+      },
     );
   }
 }
